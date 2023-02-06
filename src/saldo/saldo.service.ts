@@ -5,12 +5,20 @@ import { Saldo } from './entities/saldo.entity';
 
 @Injectable()
 export class SaldoService {
+  private readonly MAX_DEUDA = process.env.ALCALA_MAX_DEUDA || 500000;
   constructor(
     @InjectRepository(Saldo)
     private saldoRepository: Repository<Saldo>,
   ) {}
 
-  findAll(): Promise<Saldo[]> {
-    return this.saldoRepository.find();
+  async findAll(): Promise<any> {
+    const saldos = await this.saldoRepository.find();
+    const response = saldos.map(s => {
+      return {
+        apto: s.apto,
+        autorizado: s.saldo <= this.MAX_DEUDA,
+      };
+    });
+    return response;
   }
 }

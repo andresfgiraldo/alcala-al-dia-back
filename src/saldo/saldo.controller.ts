@@ -9,7 +9,7 @@ export class SaldoController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todas los saldos' })
-  findAll() {
-    return this.saldoService.findAll();
+  async findAll() {
+    return await this.saldoService.findAll();
   }
 }
