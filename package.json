@@ -10,7 +10,7 @@
     "build": "npm run lint && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "npm run prepare && npm run precommit && nest start",
-    "start:dev": "npm run prepare && npm run precommit && nest start --watch",
+    "start:dev": "npm run eslint:fix && npm run prepare && npm run precommit && nest start --watch",
     "start:debug": "npm run prepare && npm run precommit && nest start --debug --watch",
     "start:prod": "npm run prepare && npm run precommit && node dist/main",
     "lint:js:fix": "npm run lint:js -- --fix",
